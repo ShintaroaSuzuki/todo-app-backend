@@ -119,7 +119,7 @@ $ export WORKLOAD_IDENTITY_PROVIDER_ID=$(gcloud iam workload-identity-pools prov
 ```
 
 > [!NOTE]
-> すでに [ShintaroaSuzuki/todo-app-frontend](https://) で環境構築されている場合は、サービスアカウントにロールを追加するのみでよい
+> すでに [ShintaroaSuzuki/todo-app-frontend](https://github.com/ShintaroaSuzuki/todo-app-frontend) で環境構築されている場合は、サービスアカウントにロールを追加するのみでよい
 >
 > ```sh
 > $ export WORKLOAD_IDENTITY_POOL_ID=$(gcloud iam workload-identity-pools describe ${POOL_NAME} --project=${PROJECT_ID} --location=global --format="value(name)")
