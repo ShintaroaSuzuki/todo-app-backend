@@ -47,4 +47,4 @@ jobs:
             --region=$REGION \
             --service-account=${{ secrets.SERVICE_ACCOUNT_ID }}@${{ secrets.GCP_PROJECT_ID }}.iam.gserviceaccount.com \
             --set-env-vars="DATABASE_URL=${{ secrets.DATABASE_URL }}" \
-            --allow-unauthenticate
+            --allow-unauthenticated
