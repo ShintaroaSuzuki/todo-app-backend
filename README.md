@@ -112,9 +112,9 @@ $ gcloud projects add-iam-policy-binding ${PROJECT_ID} \
     --member="serviceAccount:${SERVICE_ACCOUNT}@${PROJECT_ID}.iam.gserviceaccount.com" \
     --role="roles/iam.serviceAccountUser"
 $ export WORKLOAD_IDENTITY_PROVIDER_ID=$(gcloud iam workload-identity-pools providers describe ${PROVIDER_NAME} \
-    --project="${PROJECT_ID}" \
-    --location="global" \
-    --workload-identity-pool="github-pool" \
+    --project=${PROJECT_ID} \
+    --location=global \
+    --workload-identity-pool=${POOL_NAME} \
     --format="value(name)")
 ```
 
@@ -124,6 +124,7 @@ $ export WORKLOAD_IDENTITY_PROVIDER_ID=$(gcloud iam workload-identity-pools prov
 $ gh secret set GCP_PROJECT_ID --body ${PROJECT_ID}
 $ gh secret set SERVICE_ACCOUNT_ID --body ${SERVICE_ACCOUNT_ID}
 $ gh secret set WORKLOAD_IDENTITY_PROVIDER_ID --body ${WORKLOAD_IDENTITY_PROVIDER_ID}
+$ gh secret set DATABASE_URL --body ${DATABASE_URL}
 
 # 環境変数を削除
 $ unset WORKLOAD_IDENTITY_POOL_ID
