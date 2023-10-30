@@ -48,3 +48,5 @@ jobs:
           region: asia-northeast1
           env_vars: |
             DATABASE_URL=${{ secrets.DATABASE_URL }}
+          secrets: |
+            GOOGLE_APPLICATION_CREDENTIALS=credentials:latest
