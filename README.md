@@ -118,6 +118,25 @@ $ export WORKLOAD_IDENTITY_PROVIDER_ID=$(gcloud iam workload-identity-pools prov
     --format="value(name)")
 ```
 
+> [!NOTE]
+> すでに [ShintaroaSuzuki/todo-app-frontend](https://) で環境構築されている場合は、サービスアカウントにロールを追加するのみでよい
+>
+> ```
+> $ export WORKLOAD_IDENTITY_POOL_ID=$(gcloud iam workload-identity-pools describe ${POOL_NAME} --project=${PROJECT_ID} --location=global --format="value(name)")
+> $ gcloud iam service-accounts add-iam-policy-binding ${SERVICE_ACCOUNT}@${PROJECT_ID}.iam.gserviceaccount.com \
+>     --role=roles/iam.workloadIdentityUser \
+>     --member=principalSet://iam.googleapis.com/${WORKLOAD_IDENTITY_POOL_ID}/attribute.repository/${GITHUB_REPO}
+> $ export WORKLOAD_IDENTITY_PROVIDER_ID=$(gcloud iam workload-identity-pools providers describe ${PROVIDER_NAME} \
+>     --project=${PROJECT_ID} \
+>     --location=global \
+>     --workload-identity-pool=${POOL_NAME} \
+>     --format="value(name)")
+> ```
+
+> [!WARNING]
+> GITHUB_REPO は 大文字小文字 の区別があるので注意
+> そもそもアカウント名やリポジトリ名に大文字を使うべきではない
+
 <h2 id="setup-github-secrets">GitHub Secrets の設定</h2>
 
 ```
