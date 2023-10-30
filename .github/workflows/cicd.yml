@@ -44,7 +44,7 @@ jobs:
         run: |-
           gcloud run deploy $SERVICE_NAME \
             --project=${{ secrets.GCP_PROJECT_ID }} \
-            --image=asia.gcr.io/$PROJECT_ID/$SERVICE_NAME:${{ github.sha }} \
+            --image=asia.gcr.io/${{ secrets.GCP_PROJECT_ID }}/$SERVICE_NAME:${{ github.sha }} \
             --region=$REGION \
             --service-account=${{ secrets.SERVICE_ACCOUNT_ID }}@${{ secrets.GCP_PROJECT_ID }}.iam.gserviceaccount.com \
             --set-env-vars="DATABASE_URL=${{ secrets.DATABASE_URL }}" \
