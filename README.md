@@ -133,7 +133,8 @@ $ export WORKLOAD_IDENTITY_PROVIDER_ID=$(gcloud iam workload-identity-pools prov
 >     --format="value(name)")
 > ```
 
-> [!WARNING] > `${GITHUB_REPO}` は大文字小文字の区別があるので注意
+> [!WARNING]
+> ${GITHUB_REPO} は大文字小文字の区別があるので注意
 >
 > そもそもアカウント名やリポジトリ名に大文字を使うべきではないが
 
