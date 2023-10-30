@@ -17,5 +17,5 @@ COPY --from=build /app/dist /dist/
 COPY --from=build /app/package.json /package.json
 COPY --from=build /app/node_modules /node_modules/
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-CMD ["node", "/dist/src/main.js"]
+CMD ["node", "/dist/main.js"]
 EXPOSE 8080

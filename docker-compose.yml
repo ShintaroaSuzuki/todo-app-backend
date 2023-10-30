@@ -29,7 +29,7 @@ services:
       mysql-server:
         condition: service_healthy
     ports:
-      - '8080:8080'
+      - '3001:8080'
     networks:
       - local-net
 
