@@ -56,7 +56,6 @@ $ pscale database create todo_app --plan hobby --region ap-northeast
 $ pscale password create todo_app main init-password
 # DATABASE_URL は下記
 # mysql://<USERNAME>:<PLAIN_TEXT_PASSWORD>@<ACCESS_HOST_URL>/todo_app?sslaccept=strict
-<!-- $ npx prisma migrate deploy -->
 ```
 
 <h2 id="setup-gcp-cli">Google Cloud CLI の設定</h2>
