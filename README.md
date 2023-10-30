@@ -13,7 +13,7 @@
 
 <h2 id="setup-env">環境構築</h2>
 
-```
+```sh
 $ yarn install
 ```
 
@@ -21,7 +21,7 @@ $ yarn install
 
 ### MySQL サーバーの準備
 
-```
+```sh
 $ docker compose up mysql-server -d
 $ npx prisma migrate dev
 $ npx prisma db seed
@@ -29,26 +29,26 @@ $ npx prisma db seed
 
 ### API サーバーの起動
 
-```
+```sh
 $ yarn start
 ```
 
 ### MySQL サーバーの終了
 
-```
+```sh
 $ docker compose down --rmi all
 ```
 
 <h2 id="start-container">ローカルコンテナでの起動</h2>
 
-```
+```sh
 $ docker compose up -d
 $ npx prisma migrate deploy
 ```
 
 <h2 id="setup-planetscale">PlanetScale の環境構築</h2>
 
-```
+```sh
 $ brew install "planetscale/tap/pscale"
 $ pscale auth login
 $ pscale region list # 利用できるリージョンの確認
@@ -60,7 +60,7 @@ $ pscale password create todo_app main init-password
 
 <h2 id="setup-gcp-cli">Google Cloud CLI の設定</h2>
 
-```
+```sh
 $ docker pull google/cloud-sdk:latest
 $ docker run -ti google/cloud-sdk:latest gcloud version
 $ docker run -ti --name gcloud-config google/cloud-sdk gcloud auth login
@@ -69,13 +69,13 @@ $ alias gcloud='docker run --rm -it --volumes-from gcloud-config google/cloud-sd
 
 #### 請求先アカウント ID の確認
 
-```
+```sh
 $ gcloud billing accounts list
 ```
 
 <h2 id="setup-github-cli">GitHub CLI の設定</h2>
 
-```
+```sh
 $ brew install gh
 # 下記のコマンドは任意。自分の環境ではなぜか unset GITHUB_TOKEN をしてもエラーが出るのでエイリアスを追加した。
 $ alias gh='env -u GITHUB_TOKEN gh'
@@ -84,7 +84,7 @@ $ gh auth login
 
 <h2 id="create-gcp-project">GCP プロジェクトの作成</h2>
 
-```
+```sh
 $ gcloud projects create ${PROJECT_ID} --name ${PROJECT_NAME}
 $ gcloud config set project ${PROJECT_ID}
 $ gcloud billing projects link ${PROJECT_ID} --billing-account ${BILLING_ACCOUNT_ID}
@@ -121,7 +121,7 @@ $ export WORKLOAD_IDENTITY_PROVIDER_ID=$(gcloud iam workload-identity-pools prov
 > [!NOTE]
 > すでに [ShintaroaSuzuki/todo-app-frontend](https://) で環境構築されている場合は、サービスアカウントにロールを追加するのみでよい
 >
-> ```
+> ```sh
 > $ export WORKLOAD_IDENTITY_POOL_ID=$(gcloud iam workload-identity-pools describe ${POOL_NAME} --project=${PROJECT_ID} --location=global --format="value(name)")
 > $ gcloud iam service-accounts add-iam-policy-binding ${SERVICE_ACCOUNT}@${PROJECT_ID}.iam.gserviceaccount.com \
 >     --role=roles/iam.workloadIdentityUser \
@@ -133,13 +133,13 @@ $ export WORKLOAD_IDENTITY_PROVIDER_ID=$(gcloud iam workload-identity-pools prov
 >     --format="value(name)")
 > ```
 
-> [!WARNING]
-> GITHUB_REPO は 大文字小文字 の区別があるので注意
-> そもそもアカウント名やリポジトリ名に大文字を使うべきではない
+> [!WARNING] > `${GITHUB_REPO}` は大文字小文字の区別があるので注意
+>
+> そもそもアカウント名やリポジトリ名に大文字を使うべきではないが
 
 <h2 id="setup-github-secrets">GitHub Secrets の設定</h2>
 
-```
+```sh
 $ gh secret set GCP_PROJECT_ID --body ${PROJECT_ID}
 $ gh secret set SERVICE_ACCOUNT_ID --body ${SERVICE_ACCOUNT_ID}
 $ gh secret set WORKLOAD_IDENTITY_PROVIDER_ID --body ${WORKLOAD_IDENTITY_PROVIDER_ID}
