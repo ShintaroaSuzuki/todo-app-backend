@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  mysql-server:
+    container_name: mysql-server
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: mypassword
+      MYSQL_ROOT_PASSWORD: mypassword
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
+      timeout: 20s
+      retries: 10
+    ports:
+      - '3306:3306'
+    networks:
+      - local-net
+
+  nestjs-server:
+    container_name: nestjs-server
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - DATABASE_URL=mysql://root:mypassword@mysql-server:3306/mydb
+    depends_on:
+      mysql-server:
+        condition: service_healthy
+    ports:
+      - '8080:8080'
+    networks:
+      - local-net
+
+networks:
+  local-net:
+    driver: bridge
