@@ -7,6 +7,7 @@ name: Build and Deploy to Cloud Run
 
 env:
   SERVICE_NAME: nestjs-server
+  REGION: asia-northeast1
 
 jobs:
   deploy:
