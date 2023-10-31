@@ -10,6 +10,21 @@ env:
   REGION: asia-northeast1
 
 jobs:
+  migrate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Environment
+        uses: ./.github/actions/setup-env
+
+      - name: Migrate To Production
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: yarn prisma migrate deploy
+
   deploy:
     runs-on: ubuntu-latest
 
